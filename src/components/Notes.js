@@ -4,7 +4,7 @@ import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
 const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNotes ,editNote} = context;
+  const { notes, getNotes, editNote } = context;
   useEffect(() => {
     getNotes();
     // eslint-disable-next-line
@@ -81,6 +81,8 @@ const Notes = () => {
                     aria-describedby="emailHelp"
                     onChange={onChange}
                     value={note.etitle}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -94,6 +96,8 @@ const Notes = () => {
                     name="edescription"
                     onChange={onChange}
                     value={note.edescription}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -121,6 +125,9 @@ const Notes = () => {
                 Close
               </button>
               <button
+                disabled={
+                  note.etitle.length < 5 || note.edescription.length < 5
+                }
                 onClick={handleClick}
                 type="button"
                 className="btn btn-primary"
@@ -133,6 +140,9 @@ const Notes = () => {
       </div>
       <div className="row my-3">
         <h2>Your notes</h2>
+        <div className="container mx-2">
+          {notes.length === 0 && "No notes to display"}
+        </div>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />
