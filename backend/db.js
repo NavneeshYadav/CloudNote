@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongoURI = "mongodb://127.0.0.1:27017/React";
+const mongoURI = "mongodb+srv://navneesh:navneesh@cluster0.jgzeykx.mongodb.net/NoteApp?retryWrites=true&w=majority";
 
 const connectToMongo = () => {
   mongoose
